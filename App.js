@@ -28,6 +28,7 @@ import Login from './src/pages/login'
 import Registration from './src/pages/registration'
 import Wallet from './src/pages/wallet'
 import Purchase from './src/pages/purchase-QR'
+import GenerateQRCode from './src/pages/generate-qr'
 
 const App = () => {
   return (
@@ -35,7 +36,9 @@ const App = () => {
       <StatusBar barStyle="dark-content" />
       {/* <Login /> */}
       {/* <Registration /> */}
-      <Wallet />
+      {/* <Wallet /> */}
+      {/* <Purchase /> */}
+      <GenerateQRCode />
       {/* <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
