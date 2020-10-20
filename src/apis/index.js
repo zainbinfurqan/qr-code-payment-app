@@ -55,3 +55,12 @@ api.CheckQRCodeExpire = async function (body = null, authorization = null, heade
         `${constant.BASE_URL}/qr-code/isvalid`,
     );
 };
+api.getWalletAmount = async function (body = null, authorization = null, headers) {
+    return await helpers.fetchApi(
+        null,
+        'GET',
+        body,
+        authorization,
+        `${constant.BASE_URL}/wallet`,
+    );
+};

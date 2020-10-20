@@ -29,16 +29,27 @@ import Registration from './src/pages/registration'
 import Wallet from './src/pages/wallet'
 import Purchase from './src/pages/purchase-QR'
 import GenerateQRCode from './src/pages/generate-qr'
-
+import Navigation from './src/navigation'
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import store, { persistor } from './src/redux';
 const App = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <StatusBar barStyle="dark-content" />
+          <Navigation />
+        </PersistGate>
+      </Provider>
+      {/* <StatusBar barStyle="dark-content" /> */}
       {/* <Login /> */}
+
       {/* <Registration /> */}
       {/* <Wallet /> */}
+      {/* <Navigation */}
       {/* <Purchase /> */}
-      <GenerateQRCode />
+      {/* <GenerateQRCode /> */}
       {/* <SafeAreaView>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
