@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimensions, View, Text } from 'react-native'
+import { Dimensions, View, Text, } from 'react-native'
 const { height, width } = Dimensions.get('window')
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -13,7 +13,7 @@ function ErrorModal(props) {
         }}>
             <View style={{
                 borderRadius: 10,
-                backgroundColor: 'red',
+                backgroundColor: '#CA0000',
                 padding: 10,
                 margin: 10,
                 justifyContent: "center"
@@ -22,7 +22,7 @@ function ErrorModal(props) {
                     fontSize: 40,
                     textAlign: 'center',
                     color: 'white',
-                }}>X</Text>
+                }}>Error!</Text>
                 <Text style={{
                     fontSize: 15,
                     textAlign: 'center',

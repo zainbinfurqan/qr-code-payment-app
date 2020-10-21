@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text, SafeAreaView, Image, TextInput, Button } from 'react-native'
+import { View, ScrollView, Text, SafeAreaView, TouchableOpacity, Image, TextInput, Button } from 'react-native'
 import { CONSTANTS } from '../../config/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import saveUserData from '../../redux/actions/auth'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import CustomButton from '../../components/Button'
 
 function Registration(props) {
 
@@ -57,16 +57,20 @@ function Registration(props) {
             <View style={[CONSTANTS.container, { padding: 5, justifyContent: 'center', height: 200 }]} >
                 <ScrollView style={{ marginTop: 20 }} showsVerticalScrollIndicator={false}>
                     <Text style={CONSTANTS.registrationInputLabel}>Full name</Text>
-                    <TextInput style={CONSTANTS.registrationTextInput} value={fullName} onChangeText={(e) => setName(e)} />
+                    <TextInput style={CONSTANTS.registrationTextInput}
+                        value={fullName}
+                        onChangeText={(e) => setName(e)} />
                     <Text style={CONSTANTS.registrationInputLabel}>Email</Text>
-                    <TextInput style={CONSTANTS.registrationTextInput} onChangeText={(e) => setEmail(e)} />
+                    <TextInput style={CONSTANTS.registrationTextInput}
+                        onChangeText={(e) => setEmail(e)} />
                     <Text style={CONSTANTS.registrationInputLabel}>Password</Text>
-                    <TextInput style={CONSTANTS.registrationTextInput} onChangeText={(e) => setPassword(e)} />
+                    <TextInput style={CONSTANTS.registrationTextInput}
+                        secureTextEntry={true}
+                        onChangeText={(e) => setPassword(e)} />
                     <Text style={CONSTANTS.registrationInputLabel}>Phone no</Text>
-                    <TextInput style={CONSTANTS.registrationTextInput} onChangeText={(e) => setPhoneNo(e)} />
-                    <View style={{ marginTop: 10 }}>
-                        <Button title="Sign Up" onPress={handleSignUp} />
-                    </View>
+                    <TextInput style={CONSTANTS.registrationTextInput}
+                        onChangeText={(e) => setPhoneNo(e)} />
+                    <CustomButton title="Sign Up" onPress={handleSignUp} />
                 </ScrollView>
             </View>
         </SafeAreaView >

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, TextInput, Dimensions, Button } from 'react-native'
 import { CONSTANTS } from '../../../config/constants'
+import CustomButton from '../../../components/Button'
+
 const { height, width } = Dimensions.get('window')
+
 
 function RechargeAccount(props) {
 
@@ -50,8 +53,9 @@ function RechargeAccount(props) {
                 padding: 5,
 
             }}>
-                <TextInput style={{ borderWidth: 0.34, marginBottom: 5 }} value={amount} onChangeText={(e) => setAmount(e)} />
-                <Button title='Add' onPress={addAmount} />
+                <TextInput style={CONSTANTS.loginTextInput} value={amount} onChangeText={(e) => setAmount(e)} />
+                {/* <Button title='Add' onPress={addAmount} /> */}
+                <CustomButton title='Add' onPress={addAmount} />
             </View>
         </SafeAreaView>
     );

@@ -16,7 +16,7 @@ function PurchaseWithQR(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        scanQr()
+        // scanQr()
     }, [])
 
     async function checkIsProductAvailable() {
@@ -107,11 +107,11 @@ function PurchaseWithQR(props) {
                         <Text>Open QR </Text>
                     </TouchableOpacity>
                 </View>
-                {<View style={{ flex: 1, justifyContent: 'center', borderWidth: 1 }}>
+                {openQR && <View style={{ flex: 1, justifyContent: 'center', borderWidth: 1 }}>
                     {/* <TouchableOpacity onPress={() => closeQRCodeScanner()}><Text>Close</Text></TouchableOpacity> */}
-                    {/* <QRCodeScanner
-                    // onRead={onSuccess}
-                    /> */}
+                    <QRCodeScanner
+                        onRead={scanQr}
+                    />
                 </View>}
                 {/* <TouchableOpacity style={{ borderWidth: 1, margin: 5, padding: 5, borderRadius: 5, alignSelf: 'flex-start' }}>
                     <Text style={{ fontWeight: 'bold' }}>Purchase</Text>

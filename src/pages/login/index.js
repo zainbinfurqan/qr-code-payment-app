@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, ScrollView, Button, Text, TextInput, SafeAreaView } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { CONSTANTS } from '../../config/constants'
+import CustomButton from '../../components/Button'
+
 function Login(props) {
 
     const [email, setEmail] = useState('')
@@ -40,12 +42,15 @@ function Login(props) {
             </View>
             <View style={[{ padding: 5, }]} >
                 <Text style={CONSTANTS.loginInputLabel}>Email</Text>
-                <TextInput style={CONSTANTS.loginTextInput} onChangeText={(e) => setEmail(e)} value={email} />
+                <TextInput style={CONSTANTS.loginTextInput}
+                    onChangeText={(e) => setEmail(e)}
+                    value={email} />
                 <Text style={CONSTANTS.loginInputLabel}>Password</Text>
-                <TextInput style={CONSTANTS.loginTextInput} value={password} onChangeText={(e) => setPassword(e)} />
-                <View style={{ marginTop: 10 }}>
-                    <Button title="Login" onPress={handlelogin} />
-                </View>
+                <TextInput style={CONSTANTS.loginTextInput}
+                    value={password}
+                    secureTextEntry={true}
+                    onChangeText={(e) => setPassword(e)} />
+                <CustomButton onPress={handlelogin} title="Login" />
                 <TouchableOpacity style={{ marginTop: 10 }} onPress={() => props.navigation.navigate('Registration')}>
                     <Text style={{
                         fontSize: 15,

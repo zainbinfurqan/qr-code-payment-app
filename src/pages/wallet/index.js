@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, ScrollView, SafeAreaView, Image, TouchableOpacity } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux';
+import actions from '../../redux/actions/common'
 import { CONSTANTS } from '../../config/constants'
 import RechargeAccount from './Recharge'
 
@@ -7,10 +9,12 @@ function Wallet(props) {
 
     const [openRechargePanel, setOpenRechargePanel] = useState(false)
     const [currentAmount, setCurrentAmount] = useState('')
+    const store = useSelector(store => store)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         fetchWallet()
-    })
+    }, [])
 
     function closePanel() {
         setOpenRechargePanel(!openRechargePanel)
@@ -18,15 +22,20 @@ function Wallet(props) {
 
     async function fetchWallet() {
         try {
-            const walletResponse = await fetch('https://b1e241085ed9.ngrok.io/api/wallet/', {
+            dispatch(actions.isLoading(true))
+            const walletResponse = await fetch('https://qr-payment-server.herokuapp.com/api/wallet/', {
                 method: 'GET',
                 headers: { authorization: "o2k3rofn34n23u40g" }
             })
             if (walletResponse.status == 200) {
                 const response = await walletResponse.json();
                 setCurrentAmount(response.totalAmount)
+            } else {
+
             }
+            dispatch(actions.isLoading(false))
         } catch (error) {
+            dispatch(actions.isLoading(false))
             console.log(error)
         }
     }
