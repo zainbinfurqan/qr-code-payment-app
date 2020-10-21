@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
+import { ScrollView, View, Text, SafeAreaView, TouchableOpacity, Image } from 'react-native'
 import { CONSTANTS } from '../../config/constants'
 
 function PurchaseWithQR(props) {
@@ -23,9 +23,21 @@ function PurchaseWithQR(props) {
     return (
         <SafeAreaView style={CONSTANTS.container}>
             <View style={CONSTANTS.container}>
-                <TouchableOpacity style={{ borderWidth: 1, margin: 5, padding: 5, borderRadius: 5, alignSelf: 'flex-start' }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <TouchableOpacity
+                        onPress={() => props.navigation.pop()}
+                        style={{ borderWidth: 0.35, alignSelf: 'flex-start', margin: 5, padding: 5, borderRadius: 5, }}>
+                        <Image style={{ height: 25, width: 25 }} source={require('../../assets/icons/back.png')} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        // onPress={() => setOpenRechargePanel(!openRechargePanel)}
+                        style={{ borderWidth: 0.35, alignSelf: 'flex-end', margin: 5, padding: 5, borderRadius: 5, }}>
+                        <Text>Open QR </Text>
+                    </TouchableOpacity>
+                </View>
+                {/* <TouchableOpacity style={{ borderWidth: 1, margin: 5, padding: 5, borderRadius: 5, alignSelf: 'flex-start' }}>
                     <Text style={{ fontWeight: 'bold' }}>Purchase</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </SafeAreaView>
     );

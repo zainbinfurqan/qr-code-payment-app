@@ -16,6 +16,10 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* QRCodePaymentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* QRCodePaymentTests.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		8EBC64D73E2D496CBEB8428C /* HelveticaLTStd-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CD29BCE392941E983536EA0 /* HelveticaLTStd-Bold.ttf */; };
+		7F796073437143BAA53BC723 /* HelveticaNeueLTCom-Md.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 496B3E1BFB0B4E95A2F10468 /* HelveticaNeueLTCom-Md.ttf */; };
+		2F181AFD126E443893E9393A /* samsung_s_sharp.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 15E8F50865E5463EB1E88A6C /* samsung_s_sharp.ttf */; };
+		4CD83E0C0A7546FFB9BFFCF1 /* SamsungSharpSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C17A8144E6746128E0B6820 /* SamsungSharpSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = QRCodePayment/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		1CD29BCE392941E983536EA0 /* HelveticaLTStd-Bold.ttf */ = {isa = PBXFileReference; name = "HelveticaLTStd-Bold.ttf"; path = "../assets/fonts/HelveticaLTStd-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		496B3E1BFB0B4E95A2F10468 /* HelveticaNeueLTCom-Md.ttf */ = {isa = PBXFileReference; name = "HelveticaNeueLTCom-Md.ttf"; path = "../assets/fonts/HelveticaNeueLTCom-Md.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		15E8F50865E5463EB1E88A6C /* samsung_s_sharp.ttf */ = {isa = PBXFileReference; name = "samsung_s_sharp.ttf"; path = "../assets/fonts/samsung_s_sharp.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2C17A8144E6746128E0B6820 /* SamsungSharpSans-Bold.ttf */ = {isa = PBXFileReference; name = "SamsungSharpSans-Bold.ttf"; path = "../assets/fonts/SamsungSharpSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +148,7 @@
 				00E356EF1AD99517003FC87E /* QRCodePaymentTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				320C90D91F524D8B922AC689 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -156,6 +165,18 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		320C90D91F524D8B922AC689 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				1CD29BCE392941E983536EA0 /* HelveticaLTStd-Bold.ttf */,
+				496B3E1BFB0B4E95A2F10468 /* HelveticaNeueLTCom-Md.ttf */,
+				15E8F50865E5463EB1E88A6C /* samsung_s_sharp.ttf */,
+				2C17A8144E6746128E0B6820 /* SamsungSharpSans-Bold.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -295,6 +316,10 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				8EBC64D73E2D496CBEB8428C /* HelveticaLTStd-Bold.ttf in Resources */,
+				7F796073437143BAA53BC723 /* HelveticaNeueLTCom-Md.ttf in Resources */,
+				2F181AFD126E443893E9393A /* samsung_s_sharp.ttf in Resources */,
+				4CD83E0C0A7546FFB9BFFCF1 /* SamsungSharpSans-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

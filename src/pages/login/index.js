@@ -30,7 +30,15 @@ function Login(props) {
 
     return (
         <SafeAreaView style={CONSTANTS.container}>
-            <View style={[CONSTANTS.container, { padding: 5, justifyContent: 'center', }]} >
+            <View style={{ padding: 20 }}>
+                <Text style={{
+                    fontFamily: 'SamsungSharpSans-Bold',
+                    alignSelf: 'center',
+                    fontSize: 30,
+                    fontWeight: 'bold',
+                }}>Login</Text>
+            </View>
+            <View style={[{ padding: 5, }]} >
                 <Text style={CONSTANTS.loginInputLabel}>Email</Text>
                 <TextInput style={CONSTANTS.loginTextInput} onChangeText={(e) => setEmail(e)} value={email} />
                 <Text style={CONSTANTS.loginInputLabel}>Password</Text>
@@ -39,7 +47,11 @@ function Login(props) {
                     <Button title="Login" onPress={handlelogin} />
                 </View>
                 <TouchableOpacity style={{ marginTop: 10 }} onPress={() => props.navigation.navigate('Registration')}>
-                    <Text style={{ fontSize: 15, fontWeight: 'bold' }}>Create account</Text>
+                    <Text style={{
+                        fontSize: 15,
+                        fontWeight: 'bold',
+                        fontFamily: 'SamsungSharpSans-Bold'
+                    }}>Create account</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView >
