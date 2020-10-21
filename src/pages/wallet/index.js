@@ -18,7 +18,7 @@ function Wallet(props) {
 
     async function fetchWallet() {
         try {
-            const walletResponse = await fetch('https://5d562c2356e4.ngrok.io/api/wallet/', {
+            const walletResponse = await fetch('https://b1e241085ed9.ngrok.io/api/wallet/', {
                 method: 'GET',
                 headers: { authorization: "o2k3rofn34n23u40g" }
             })
