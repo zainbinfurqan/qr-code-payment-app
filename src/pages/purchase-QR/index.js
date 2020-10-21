@@ -35,6 +35,12 @@ function PurchaseWithQR(props) {
                         <Text>Open QR </Text>
                     </TouchableOpacity>
                 </View>
+                <View style={{ flex: 1, justifyContent: 'center', }}>
+                    {/* <TouchableOpacity onPress={() => closeQRCodeScanner()}><Text>Close</Text></TouchableOpacity> */}
+                    {/* <QRCodeScanner
+                    // onRead={onSuccess}
+                    /> */}
+                </View>
                 {/* <TouchableOpacity style={{ borderWidth: 1, margin: 5, padding: 5, borderRadius: 5, alignSelf: 'flex-start' }}>
                     <Text style={{ fontWeight: 'bold' }}>Purchase</Text>
                 </TouchableOpacity> */}
