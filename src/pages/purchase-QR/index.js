@@ -16,13 +16,14 @@ function PurchaseWithQR(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // scanQr()
+        scanQr()
     }, [])
 
     async function checkIsProductAvailable() {
         try {
+            dispatch(action.isLoading(true))
             let product = 'lksadnfadfqwe34afanfj'
-            let resProduct = await fetch(`https://b1e241085ed9.ngrok.io/api/payment/isvalid?product=${product}`, {
+            let resProduct = await fetch(`https://a3d3bea50f99.ngrok.io/api/payment/isvalid?product=${product}`, {
                 method: 'GET',
                 headers: { authorization: "o2k3rofn34n23u40g" },
             });
@@ -39,26 +40,30 @@ function PurchaseWithQR(props) {
                 }
             } else {
                 let res = await resProduct.json()
-                // setIsError(true)
                 dispatch(action.isError({
                     isError: true,
                     text: res.message
                 }))
-                dispatch(action.isLoading(true))
-                // setError(res.message)
+                dispatch(action.isLoading(false))
             }
         } catch (error) {
-            console.log("error", error)
+            dispatch(action.isError({
+                isError: true,
+                text: error.message
+            }))
+            dispatch(action.isLoading(false))
         }
     }
 
     async function purchaseProduct() {
         try {
+            dispatch(action.isLoading(true))
             let body = {
                 product: 'lksadnfadfqwe34afanfj',
+                payAmount: 25000
             }
             console.log(body)
-            let purchaseProduct = await fetch(`https://b1e241085ed9.ngrok.io/api/payment/purchase`, {
+            let purchaseProduct = await fetch(`https://a3d3bea50f99.ngrok.io/api/payment/purchase`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,12 +81,12 @@ function PurchaseWithQR(props) {
                 dispatch(action.isLoading(false))
             } else {
                 let res = await purchaseProduct.json()
-                console.log(res)
+                console.log(" error", res)
                 dispatch(action.isError({
                     isError: true,
                     text: res.message
                 }))
-                dispatch(action.isLoading(true))
+                dispatch(action.isLoading(false))
             }
         } catch (error) {
             console.log("error", error)
@@ -104,7 +109,7 @@ function PurchaseWithQR(props) {
                     <TouchableOpacity
                         onPress={() => setOpenQR(!openQR)}
                         style={{ borderWidth: 0.35, alignSelf: 'flex-end', margin: 5, padding: 5, borderRadius: 5, }}>
-                        <Text>Open QR </Text>
+                        <Text>{openQR ? 'Close QR' : 'Open QR'}</Text>
                     </TouchableOpacity>
                 </View>
                 {openQR && <View style={{ flex: 1, justifyContent: 'center', borderWidth: 1 }}>

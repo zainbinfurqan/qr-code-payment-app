@@ -14,9 +14,9 @@ function RechargeAccount(props) {
         try {
             let body = {
                 amount: amount,
-                payAmount: 2000
+                payAmount: 25000
             }
-            const rechargeResponse = await fetch('https://b1e241085ed9.ngrok.io/api/wallet/', {
+            const rechargeResponse = await fetch('https://a3d3bea50f99.ngrok.io/api/wallet/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -23,7 +23,7 @@ function Wallet(props) {
     async function fetchWallet() {
         try {
             dispatch(actions.isLoading(true))
-            const walletResponse = await fetch('https://qr-payment-server.herokuapp.com/api/wallet/', {
+            const walletResponse = await fetch('https://a3d3bea50f99.ngrok.io/api/wallet/', {
                 method: 'GET',
                 headers: { authorization: "o2k3rofn34n23u40g" }
             })
@@ -31,10 +31,18 @@ function Wallet(props) {
                 const response = await walletResponse.json();
                 setCurrentAmount(response.totalAmount)
             } else {
-
+                const response = await walletResponse.json();
+                dispatch(actions.isError({
+                    isError: true,
+                    text: response.message
+                }))
+                dispatch(actions.isLoading(false))
             }
-            dispatch(actions.isLoading(false))
         } catch (error) {
+            dispatch(actions.isError({
+                isError: true,
+                text: response.message
+            }))
             dispatch(actions.isLoading(false))
             console.log(error)
         }

@@ -1,10 +1,12 @@
 import React from 'react';
-import { Dimensions, View, Text, } from 'react-native'
+import { Dimensions, View, Text, TouchableOpacity } from 'react-native'
 const { height, width } = Dimensions.get('window')
 import { useDispatch, useSelector } from 'react-redux'
+import action from '../../redux/actions/common';
 
 function ErrorModal(props) {
     const store = useSelector(store => store)
+    const dispatch = useDispatch()
     return (
         <View style={{
             backgroundColor: 'rgba(52, 52, 52, 0.8)',
@@ -28,6 +30,18 @@ function ErrorModal(props) {
                     textAlign: 'center',
                     color: 'white',
                 }}>{store.common.error.text}</Text>
+                <TouchableOpacity
+                    onPress={() => dispatch(action.isError({
+                        isError: false,
+                        text: ''
+                    }))}
+                    style={{
+                        backgroundColor: 'white',
+                        borderRadius: 10,
+                        marginTop: 10, padding: 10
+                    }}>
+                    <Text style={{ fontWeight: 'bold', color: 'black', textAlign: 'center' }}>Cancle</Text>
+                </TouchableOpacity>
             </View>
         </View>
     );

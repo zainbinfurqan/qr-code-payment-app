@@ -19,9 +19,7 @@ function Auth(props) {
     const store = useSelector(store => store)
 
     React.useEffect(() => {
-        console.log("navigation")
     }, [])
-    console.log(store.common.isLoadin)
     return (
         <>
             <SafeAreaView style={{ flex: 1 }}>
@@ -42,7 +40,7 @@ function Auth(props) {
                     <Stack.Screen name="Dashboard" component={Dashboard} />
                 </Stack.Navigator>
             </SafeAreaView>
-            {/* {!store.common.error.isError && <ErrorModal />} */}
+            {store.common.error.isError && <ErrorModal />}
             {store.common.isLoadin && <LoadingModal />}
         </>
 
