@@ -16,14 +16,17 @@ function PurchaseWithQR(props) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        scanQr()
+        // scanQr()
     }, [])
 
-    async function checkIsProductAvailable() {
+    async function checkIsProductAvailable(e) {
+        let data = {
+            ...JSON.parse(e.data)
+        }
         try {
             dispatch(action.isLoading(true))
-            let product = 'lksadnfadfqwe34afanfj'
-            let resProduct = await fetch(`https://a3d3bea50f99.ngrok.io/api/payment/isvalid?product=${product}`, {
+            let product = data.id
+            let resProduct = await fetch(`https://qr-payment-server.herokuapp.com//api/payment/isvalid?product=${product}`, {
                 method: 'GET',
                 headers: { authorization: "o2k3rofn34n23u40g" },
             });
@@ -36,7 +39,7 @@ function PurchaseWithQR(props) {
                 dispatch(action.isLoading(false))
                 let res = await resProduct.json()
                 if (res.isSold == false) {
-                    purchaseProduct()
+                    purchaseProduct(data)
                 }
             } else {
                 let res = await resProduct.json()
@@ -55,15 +58,14 @@ function PurchaseWithQR(props) {
         }
     }
 
-    async function purchaseProduct() {
+    async function purchaseProduct(data) {
         try {
             dispatch(action.isLoading(true))
             let body = {
-                product: 'lksadnfadfqwe34afanfj',
-                payAmount: 25000
+                product: data.id,
+                payAmount: Number(data.price)
             }
-            console.log(body)
-            let purchaseProduct = await fetch(`https://a3d3bea50f99.ngrok.io/api/payment/purchase`, {
+            let purchaseProduct = await fetch(`https://qr-payment-server.herokuapp.com//api/payment/purchase`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,8 +95,8 @@ function PurchaseWithQR(props) {
         }
     }
 
-    async function scanQr() {
-        checkIsProductAvailable()
+    async function scanQr(e) {
+        checkIsProductAvailable(e)
     }
 
     return (

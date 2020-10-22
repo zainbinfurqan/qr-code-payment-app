@@ -6,11 +6,11 @@ function CustomButton(props) {
         <TouchableOpacity
             onPress={props.onPress}
             activeOpacity={0.7}
-            style={[{
+            style={[props.style, {
                 padding: 5,
                 backgroundColor: props.bgColor,
                 borderRadius: 10, marginTop: 10
-            }]}>
+            },]}>
             <Text style={{
                 textAlign: 'center',
                 fontSize: 20,

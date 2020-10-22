@@ -23,7 +23,7 @@ function Wallet(props) {
     async function fetchWallet() {
         try {
             dispatch(actions.isLoading(true))
-            const walletResponse = await fetch('https://a3d3bea50f99.ngrok.io/api/wallet/', {
+            const walletResponse = await fetch('https://qr-payment-server.herokuapp.com//api/wallet/', {
                 method: 'GET',
                 headers: { authorization: "o2k3rofn34n23u40g" }
             })

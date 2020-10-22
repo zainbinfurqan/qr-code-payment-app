@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import { View, Button, Image } from 'react-native'
+import React, { useEffect, useState } from 'react';
+import { View, Button, Image, Text, TextInput, } from 'react-native'
+import CustomButton from '../../components/Button'
 import RNQRGenerator from 'rn-qr-generator';
 
 function GenerateQRCode(props) {
 
     const [imageUri, setImageUri] = useState('')
+    const [productName, setProductName] = useState('')
+    const [productPrice, setProductPrice] = useState('');
 
+    useEffect(() => {
+    }, [])
 
-    function generateQRCode() {
+    async function generateQRCode() {
         let data = {
-            id: "lksadnfanfj@#$adfqwe34af",
-            name: 'Mobile',
-            price: 25000,
+            id: Math.random().toString(36).substring(2, 45),
+            name: productName,
+            price: Number(productPrice),
             isSold: false,
         }
         RNQRGenerator.generate({
@@ -22,16 +27,46 @@ function GenerateQRCode(props) {
             backgroundColor: 'black', // default 'white'
             color: 'white',           // default 'black'
         })
-            .then(response => {
+            .then(async (response) => {
                 const { uri, width, height, base64 } = response;
-                setImageUri(uri)
+                const product = await fetch('https://4fb0860f35e8.ngrok.io/api/product/', {
+                    method: 'POST', headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                if (product.status == 200) {
+                    const res = await product.json()
+                    setImageUri(uri)
+                }
             })
             .catch(error => console.log('Cannot create QR code', error));
     }
     return (
-        <View style={{ flex: 1 }}>
-            <Button title="Generate" onPress={generateQRCode} />
-            <Image style={{ height: 250, width: 250 }} source={{ uri: imageUri }} />
+        <View style={{ flex: 1, backgroundColor: 'white' }}>
+            <View style={{ padding: 5 }}>
+                <Text
+                    style={{ marginLeft: 20, marginTop: 10, fontWeight: 'bold' }}
+                >Product Name</Text>
+                <TextInput
+                    style={{ borderWidth: 0.34, borderRadius: 50, }}
+                    value={productName}
+                    onChangeText={(e) => setProductName(e)}
+                />
+                <Text
+                    style={{ marginLeft: 20, marginTop: 10, fontWeight: 'bold' }}
+                >Product Price</Text>
+                <TextInput
+                    style={{ borderWidth: 0.34, borderRadius: 50, }}
+                    value={productPrice}
+                    onChangeText={(e) => setProductPrice(e)}
+                />
+                <CustomButton title="Generate QR" onPress={generateQRCode} />
+            </View>
+            {/* <Button title="Generate" onPress={generateQRCode} /> */}
+            <View style={{ flex: 1, justifyContent: 'center' }}>
+                {imageUri.length > 0 && <Image style={{ alignSelf: "center", height: 250, width: 250 }} source={{ uri: imageUri }} />}
+            </View>
         </View>
     );
 }

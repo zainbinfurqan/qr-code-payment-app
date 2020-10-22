@@ -51,6 +51,26 @@ function Dashboard(props) {
                         fontWeight: 'bold'
                     }}>Want to purchase?</Text>
                 </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => props.navigation.navigate('GenerateQR')}
+                    style={{
+                        borderWidth: 0.34,
+                        borderRadius: 10,
+                        height: 100,
+                        margin: 10,
+                        flexDirection: 'row',
+                        padding: 10,
+                        justifyContent: "center"
+                    }}>
+                    <Image
+                        style={{ height: 25, width: 25, alignSelf: 'center', marginRight: 15 }}
+                        source={require('../../assets/icons/product.png')} />
+                    <Text style={{
+                        alignSelf: 'center',
+                        fontSize: 20,
+                        fontWeight: 'bold'
+                    }}>Add Product</Text>
+                </TouchableOpacity>
             </View>
 
         </SafeAreaView>
