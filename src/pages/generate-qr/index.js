@@ -28,7 +28,7 @@ function GenerateQRCode(props) {
         })
             .then(async (response) => {
                 const { uri, width, height, base64 } = response;
-                const product = await fetch('https://ec5eb5869969.ngrok.io/api/product/', {
+                const product = await fetch('https://qr-payment-server.herokuapp.com/api/product/', {
                     method: 'POST', headers: {
                         'Content-Type': 'application/json'
                     },

@@ -26,7 +26,7 @@ function PurchaseWithQR(props) {
         try {
             dispatch(action.isLoading(true))
             let product = data.id
-            let resProduct = await fetch(`https://ec5eb5869969.ngrok.io/api/payment/isvalid?product=${product}`, {
+            let resProduct = await fetch(`https://qr-payment-server.herokuapp.com/api/payment/isvalid?product=${product}`, {
                 method: 'GET',
                 headers: { authorization: "o2k3rofn34n23u40g" },
             });
@@ -65,7 +65,7 @@ function PurchaseWithQR(props) {
                 product: data.id,
                 payAmount: Number(data.price)
             }
-            let purchaseProduct = await fetch(`https://ec5eb5869969.ngrok.io/api/payment/purchase`, {
+            let purchaseProduct = await fetch(`https://qr-payment-server.herokuapp.com/api/payment/purchase`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

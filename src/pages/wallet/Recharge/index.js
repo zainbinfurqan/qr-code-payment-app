@@ -21,7 +21,7 @@ function RechargeAccount(props) {
                 amount: amount,
                 payAmount: 25000
             }
-            const rechargeResponse = await fetch('https://ec5eb5869969.ngrok.io/api/wallet/', {
+            const rechargeResponse = await fetch('https://qr-payment-server.herokuapp.com/api/wallet/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
