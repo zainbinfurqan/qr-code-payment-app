@@ -9,8 +9,6 @@ function GenerateQRCode(props) {
     const [productName, setProductName] = useState('')
     const [productPrice, setProductPrice] = useState('');
 
-    useEffect(() => {
-    }, [])
 
     async function generateQRCode() {
         let data = {
@@ -19,6 +17,7 @@ function GenerateQRCode(props) {
             price: Number(productPrice),
             isSold: false,
         }
+        console.log(data)
         RNQRGenerator.generate({
             value: JSON.stringify(data), // required
             height: 160,
@@ -29,7 +28,7 @@ function GenerateQRCode(props) {
         })
             .then(async (response) => {
                 const { uri, width, height, base64 } = response;
-                const product = await fetch('https://4fb0860f35e8.ngrok.io/api/product/', {
+                const product = await fetch('https://ec5eb5869969.ngrok.io/api/product/', {
                     method: 'POST', headers: {
                         'Content-Type': 'application/json'
                     },

@@ -12,6 +12,7 @@ import Wallet from '../pages/wallet'
 import Dashboard from '../pages/dashboard'
 import ErrorModal from '../components/ErrorModal'
 import LoadingModal from '../components/LoadingModal'
+import SuccessModal from '../components/SuccessModal'
 const Stack = createStackNavigator();
 
 function Auth(props) {
@@ -42,6 +43,7 @@ function Auth(props) {
             </SafeAreaView>
             {store.common.error.isError && <ErrorModal />}
             {store.common.isLoadin && <LoadingModal />}
+            {store.common.success.isSuccess && <SuccessModal />}
         </>
 
     );

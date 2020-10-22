@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, ScrollView, SafeAreaView, TouchableOpacity, TextInput, Dimensions, Button } from 'react-native'
 import { CONSTANTS } from '../../../config/constants'
 import CustomButton from '../../../components/Button'
+import { useDispatch, useSelector } from 'react-redux'
+import action from '../../../redux/actions/common';
 
 const { height, width } = Dimensions.get('window')
 
@@ -9,14 +11,17 @@ const { height, width } = Dimensions.get('window')
 function RechargeAccount(props) {
 
     const [amount, setAmount] = useState('')
+    const store = useSelector(store => store)
+    const dispatch = useDispatch()
 
     async function addAmount() {
         try {
+            dispatch(action.isLoading(true))
             let body = {
                 amount: amount,
                 payAmount: 25000
             }
-            const rechargeResponse = await fetch('https://qr-payment-server.herokuapp.com//api/wallet/', {
+            const rechargeResponse = await fetch('https://ec5eb5869969.ngrok.io/api/wallet/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -24,12 +29,29 @@ function RechargeAccount(props) {
                 },
                 body: JSON.stringify(body)
             })
-            console.log(rechargeResponse.status)
+            // console.log(rechargeResponse.status)
             if (rechargeResponse.status == 200) {
                 const res = await rechargeResponse.json()
+                dispatch(action.isSuccess({
+                    isSuccess: false,
+                    text: ''
+                }))
+                dispatch(action.isLoading(false))
                 props.closePanel()
+            } else {
+                const res = await rechargeResponse.json()
+                dispatch(action.isSuccess({
+                    isSuccess: true,
+                    text: res.message
+                }))
+                dispatch(action.isLoading(false))
             }
         } catch (error) {
+            dispatch(action.isSuccess({
+                isSuccess: true,
+                text: error.message
+            }))
+            dispatch(action.isLoading(false))
             console.log(error)
         }
     }

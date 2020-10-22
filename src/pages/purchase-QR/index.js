@@ -26,7 +26,7 @@ function PurchaseWithQR(props) {
         try {
             dispatch(action.isLoading(true))
             let product = data.id
-            let resProduct = await fetch(`https://qr-payment-server.herokuapp.com//api/payment/isvalid?product=${product}`, {
+            let resProduct = await fetch(`https://ec5eb5869969.ngrok.io/api/payment/isvalid?product=${product}`, {
                 method: 'GET',
                 headers: { authorization: "o2k3rofn34n23u40g" },
             });
@@ -65,7 +65,7 @@ function PurchaseWithQR(props) {
                 product: data.id,
                 payAmount: Number(data.price)
             }
-            let purchaseProduct = await fetch(`https://qr-payment-server.herokuapp.com//api/payment/purchase`, {
+            let purchaseProduct = await fetch(`https://ec5eb5869969.ngrok.io/api/payment/purchase`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -74,16 +74,19 @@ function PurchaseWithQR(props) {
                 body: JSON.stringify(body)
             });
             if (purchaseProduct.status == 200) {
+                setOpenQR(!openQR)
                 let res = await purchaseProduct.json()
-                console.log(res)
                 dispatch(action.isError({
                     isError: false,
                     text: ''
                 }))
+                dispatch(action.isSuccess({
+                    isSuccess: true,
+                    text: res.message
+                }))
                 dispatch(action.isLoading(false))
             } else {
                 let res = await purchaseProduct.json()
-                console.log(" error", res)
                 dispatch(action.isError({
                     isError: true,
                     text: res.message
@@ -91,6 +94,11 @@ function PurchaseWithQR(props) {
                 dispatch(action.isLoading(false))
             }
         } catch (error) {
+            dispatch(action.isError({
+                isError: true,
+                text: error.message
+            }))
+            dispatch(action.isLoading(false))
             console.log("error", error)
         }
     }
@@ -115,14 +123,10 @@ function PurchaseWithQR(props) {
                     </TouchableOpacity>
                 </View>
                 {openQR && <View style={{ flex: 1, justifyContent: 'center', borderWidth: 1 }}>
-                    {/* <TouchableOpacity onPress={() => closeQRCodeScanner()}><Text>Close</Text></TouchableOpacity> */}
                     <QRCodeScanner
                         onRead={scanQr}
                     />
                 </View>}
-                {/* <TouchableOpacity style={{ borderWidth: 1, margin: 5, padding: 5, borderRadius: 5, alignSelf: 'flex-start' }}>
-                    <Text style={{ fontWeight: 'bold' }}>Purchase</Text>
-                </TouchableOpacity> */}
             </View>
         </SafeAreaView>
     );
