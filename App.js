@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -14,6 +14,8 @@ import {
   View,
   Text,
   StatusBar,
+  TouchableOpacity,
+  Image,
 } from 'react-native';
 
 import {
@@ -33,13 +35,55 @@ import Navigation from './src/navigation'
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './src/redux';
+import { RNCamera } from 'react-native-camera';
+import Tie1 from './src/assets/images/s-1.png'
 const App = () => {
+
+  const [image, setImage] = useState(require('./src/assets/images/s-1.png'))
+
   return (
     <>
       <Provider store={store}>
+        {console.log(image)}
         <PersistGate loading={null} persistor={persistor}>
           <StatusBar barStyle="dark-content" />
-          <Navigation />
+          <View style={{ borderWidth: 1, flex: 1 }}>
+            <RNCamera style={{ flex: 1, borderWidth: 1 }}>
+              <View style={{ borderWidth: 1, flex: 1, justifyContent: 'center', borderColor: 'white', paddingTop: 10 }}>
+                <View style={{
+                  height: 350, width: 350, alignSelf: 'center',
+                }}>
+                  <Image
+                    resizeMode="contain"
+                    style={{
+                      height: 350, width: 350
+                    }}
+                    source={image} />
+                </View>
+              </View>
+            </RNCamera>
+          </View>
+          <View style={{ borderWidth: 1, borderColor: 'white', flexDirection: 'row', flexWrap: 'wrap', padding: 5 }}>
+            <TouchableOpacity onPress={() => setImage(require('./src/assets/images/tie.png'))} style={{ padding: 5, borderWidth: 0.35, borderColor: '#E14D02', margin: 5, borderRadius: 5, }}>
+              <Text>Tie-1</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setImage(require('./src/assets/images/tie2.png'))} style={{ padding: 5, borderColor: '#E14D02', borderWidth: 0.35, margin: 5, borderRadius: 5, }}>
+              <Text>Tie-2</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setImage(require('./src/assets/images/s-1.png'))} style={{ padding: 5, borderColor: '#E14D02', borderWidth: 0.35, margin: 5, borderRadius: 5, }}>
+              <Text>Shirt-1</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setImage(require('./src/assets/images/s2.png'))} style={{ padding: 5, borderColor: '#E14D02', borderWidth: 0.35, margin: 5, borderRadius: 5, }}>
+              <Text>Shirt-2</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setImage(require('./src/assets/images/s-3.png'))} style={{ padding: 5, borderColor: '#E14D02', borderWidth: 0.35, margin: 5, borderRadius: 5, }}>
+              <Text>Shirt-3</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setImage(require('./src/assets/images/s4-4.png'))} style={{ padding: 5, borderColor: '#E14D02', borderWidth: 0.35, margin: 5, borderRadius: 5, }}>
+              <Text>Shirt-4</Text>
+            </TouchableOpacity>
+          </View>
+          {/* <Navigation /> */}
         </PersistGate>
       </Provider>
       {/* <StatusBar barStyle="dark-content" /> */}
