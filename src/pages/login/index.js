@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, ScrollView, Button, Text, TextInput, SafeAreaView } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { CONSTANTS } from '../../config/constants'
+import CustomButton from '../../components/Button'
+
 function Login(props) {
 
     const [email, setEmail] = useState('')
@@ -32,24 +34,39 @@ function Login(props) {
         <SafeAreaView style={CONSTANTS.container}>
             <View style={{ padding: 20 }}>
                 <Text style={{
-                    fontFamily: 'SamsungSharpSans-Bold',
+                    fontFamily: 'HelveticaNeueLTCom-Md',
                     alignSelf: 'center',
                     fontSize: 30,
+                    color: CONSTANTS.COLORS.WHITE,
                     fontWeight: 'bold',
                 }}>Login</Text>
             </View>
             <View style={[{ padding: 5, }]} >
-                <Text style={CONSTANTS.loginInputLabel}>Email</Text>
-                <TextInput style={CONSTANTS.loginTextInput} onChangeText={(e) => setEmail(e)} value={email} />
-                <Text style={CONSTANTS.loginInputLabel}>Password</Text>
-                <TextInput style={CONSTANTS.loginTextInput} value={password} onChangeText={(e) => setPassword(e)} />
-                <View style={{ marginTop: 10 }}>
-                    <Button title="Login" onPress={handlelogin} />
-                </View>
+                <Text style={[CONSTANTS.loginInputLabel, {
+                    color: CONSTANTS.COLORS.WHITE,
+                }]}>Email</Text>
+                <TextInput style={[CONSTANTS.loginTextInput, {
+                    borderColor: CONSTANTS.COLORS.WHITE,
+                    color: CONSTANTS.COLORS.WHITE,
+                }]}
+                    onChangeText={(e) => setEmail(e)}
+                    value={email} />
+                <Text style={[CONSTANTS.loginInputLabel, {
+                    color: CONSTANTS.COLORS.WHITE,
+                }]}>Password</Text>
+                <TextInput style={[CONSTANTS.loginTextInput, {
+                    borderColor: CONSTANTS.COLORS.WHITE,
+                    color: CONSTANTS.COLORS.WHITE,
+                }]}
+                    value={password}
+                    secureTextEntry={true}
+                    onChangeText={(e) => setPassword(e)} />
+                <CustomButton onPress={handlelogin} title="Login" bgColor="#ECECEC" textColor="#000000" />
                 <TouchableOpacity style={{ marginTop: 10 }} onPress={() => props.navigation.navigate('Registration')}>
                     <Text style={{
                         fontSize: 15,
                         fontWeight: 'bold',
+                        color: CONSTANTS.COLORS.WHITE,
                         fontFamily: 'SamsungSharpSans-Bold'
                     }}>Create account</Text>
                 </TouchableOpacity>
