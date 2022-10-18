@@ -10,8 +10,12 @@ I have create a simple QR Code online payment for learning purpose,
 
 ## Installation
 
-Clone the repo and run command in terminal
+1. Clone the repo 
+```bash
+ git clone repo link
+```
 
+2. Install dependencies
 ```bash
  npm install or npm i 
 ```
