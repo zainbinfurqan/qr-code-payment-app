@@ -24,7 +24,6 @@ or
 
 ```bash
  1. React Native (Front End)
- 2. Node.js (Back End) 
 ```
 
 
